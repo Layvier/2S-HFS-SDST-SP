@@ -12,9 +12,8 @@ public class Main {
         System.out.println("hello worlds");
         String filename = null;
         long max_time = 300;
-        boolean verbose = false;
         boolean graphical = false;
-
+        /*
         // --- parse command-line ---
         for (int i = 0; i < arg.length; i++) {
             if (arg[i].compareTo("-help") == 0) {
@@ -23,12 +22,10 @@ public class Main {
                 System.err.println("Options:");
                 System.err.println("  -help     : imprime cette aide");
                 System.err.println("  -t (int)  : temps maximum alloué à la résolution");
-                System.err.println("  -v        : trace, niveau d'impression");
                 System.err.println("  -g        : affichage graphique de la solution");
 
-            } else if (arg[i].compareTo("-v") == 0) {
-                verbose = true;
-            } else if (arg[i].compareTo("-t") == 0) {
+            }
+            else if (arg[i].compareTo("-t") == 0) {
                 try {
                     max_time = Integer.parseInt(arg[++i]);
                 } catch (Exception e) {
@@ -46,12 +43,15 @@ public class Main {
                 filename = arg[i];
             }
         }
-
+        */
         // --- create and solve problems ---
         try {
+            filename = "n33";
+
             Solver solver = new Solver();
+
             // create a new problem; data is read from file filename
-            Instance prob = new Instance(filename);
+            Instance prob = new Instance();
             solver.setInstance(prob);
             solver.setSolution(new Solution(prob));//rajouter un param dans le constructeur, comme nbCamions ?
 
@@ -83,18 +83,9 @@ public class Main {
             }
             System.out.println(filename + ";" + solver.getSolution().getObjectif() + ";" + t + ";" + e);
 
-            // if verbose, print the solution
-           /* if (verbose) {
-                solver.getSolution().print(System.err);
-                if (e == 1)
-                    System.err.println("Erreur dans la solution: " + solver.getSolution().getError());
-            }*/
-
             // If graphical and no error, draw
             if (feasible && graphical) {
                 // Graphical solution
-
-                //new MainFrame(prob, solver.getSolution());
 
             }
         } catch (IOException e) {

@@ -1,6 +1,7 @@
 package com.resolution;
 
 import com.instance.Instance;
+import com.instance.Job;
 import com.instance.Solution;
 
 /**
@@ -27,15 +28,33 @@ public class Solver {
         Instance instance = this.instance;
         Solution solution = this.solution;
 
+        solution = this.Johnson();
 
         //magic happening here
 
 
-
-
         this.solution = solution;
+    }
+    public void BPI(int W, int I){
 
+    }
+    public void BNI(int B, int I){
+        Instance instance = this.instance;
+        Solution solution = this.solution;
 
+        Beam beam = new Beam(B, solution);
+        for(int i=0; i<I; i++){
+            Job job = this.selectJob(i, I);
+            beam.updatePotentialsNEH(job);
+            beam.select();
+        }
+
+    }
+    public Job selectJob(int i, int n){
+        return instance.getJob(i % instance.getN());
+    }
+    public Solution Johnson(){
+        return null;
     }
 
 }
