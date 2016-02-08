@@ -22,7 +22,21 @@ public class Beam {
         }
         this.potential = new ArrayList<Solution>();
     }
-
+    public void procedure(String procedure, int iteration){
+        if(procedure == "random"){
+            this.random(iteration);
+        }
+        if(procedure == "NEH"){
+            this.NEH(iteration);
+        }
+    }
+    public void NEH(int iteration){
+        for(int i=0; i<iteration; i++){
+            for(int j=0; j<B; j++){
+                potential.addAll(beam[j].neh());
+            }
+        }
+    }
     /**
      * A appeller à chaque tour
      */
@@ -52,6 +66,12 @@ public class Beam {
         for(Solution s : potential){
 
         }
+    }
+    public void random(int iteration){
+
+    }
+    public Solution bestSolution(){
+        return null;
     }
 
 

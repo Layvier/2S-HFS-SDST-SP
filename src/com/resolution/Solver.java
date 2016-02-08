@@ -10,6 +10,8 @@ import com.instance.Solution;
 public class Solver {
     private static final double TimeLimit = 3600;
     private static final double Epsilon = 0.001;
+
+    private static final int B = 5;
     private long time;
 
     private Instance instance;
@@ -30,14 +32,28 @@ public class Solver {
 
         solution = this.Johnson();
 
-        //magic happening here
-
+        solution = beamSearch(B, solution);
 
         this.solution = solution;
     }
     public void BPI(int W, int I){
 
     }
+    public Solution beamSearch(int B, Solution solutionInitiale){
+        Instance instance = this.instance;
+        Solution solution = this.solution;
+
+        Beam beam = new Beam(B, solution);
+        beam.procedure("random", 5);
+        //process
+
+
+        Solution opt = beam.bestSolution();
+
+        return opt;
+
+    }
+    /*
     public void BNI(int B, int I){
         Instance instance = this.instance;
         Solution solution = this.solution;
@@ -55,6 +71,6 @@ public class Solver {
     }
     public Solution Johnson(){
         return null;
-    }
+    }*/
 
 }
